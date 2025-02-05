@@ -60,9 +60,13 @@ table td {
     text-align: center;
 }
 
-.tdLable {
+.tdLabel .name {
     font-weight: bold;
     font-size: 18px;
+    color: #FFF;
+}
+
+.tdLabel {
     color: #FFF;
 }
 
