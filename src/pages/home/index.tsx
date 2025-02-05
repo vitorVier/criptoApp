@@ -1,4 +1,4 @@
-import { useState, useEffect ,FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './home.module.css';
@@ -73,11 +73,29 @@ export function Home() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if(input === "") return ;
+    if(input === "") {
+      alert("Informe a Criptomoeda primeiro!")
+      return;
+    }
 
-    navigate(`detail/${input}`)
+    verificarCoin();
     
     setInput("");
+  }
+
+  function verificarCoin() {
+    let teste = coins.some(coin => coin.name.toLowerCase() === input.toLowerCase());
+
+    if(teste === false) {
+      try {
+        throw new Error("Criptomoeda não encontrada");
+      } catch(Error) {
+        alert(Error)
+        return;
+      }
+    }
+    
+    navigate(`detail/${input}`)
   }
 
   function handleGetMore() {
